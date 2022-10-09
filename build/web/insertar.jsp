@@ -28,7 +28,7 @@
         </sql:update>
 
         <sql:query dataSource = "${fuenteDatos}" var = "result">
-            SELECT isbn, titulo, autor, e.nombre FROM libro l INNER JOIN editorial e ON l.editorial = e.id;
+            SELECT isbn, titulo, autor, e.nombre FROM libro l INNER JOIN editorial e ON l.editorial = e.id ORDER BY isbn;
         </sql:query>
         
         <div class="columns m-4">

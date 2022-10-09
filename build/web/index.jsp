@@ -7,7 +7,7 @@
 <html>
     <head>
        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-       <title>Actualizar, Eliminar, Crear registros.</title>
+       <title>Gestionar libros</title>
        <link rel="stylesheet" href="css/bulma.min.css">
     </head>
     
@@ -27,7 +27,6 @@
                                         <input type="text" 
                                                class="input is-rounded" 
                                                name="isbn" 
-                                               value="<% if (request.getParameter("isbn") != null) out.println(request.getParameter("isbn"));%>" 
                                                size="13" 
                                                maxlength="13" 
                                                pattern="[0-9]{13}" 
@@ -43,7 +42,6 @@
                                         <input type="text" 
                                                class="input is-rounded" 
                                                name="titulo" 
-                                               value="<% if (request.getParameter("titulolibro") != null) out.println(request.getParameter("titulolibro"));%>" 
                                                size="50" 
                                                pattern="[a-zA-Z0-9\,]{0,50}" 
                                                title="Solo debe ingresar texto y maximo 50 caracteres" 
@@ -57,13 +55,13 @@
                                     <div class="control">
                                         <input type="text" 
                                                class="input is-rounded" 
-                                               name="autor" value="<% if (request.getParameter("autor") != null) out.println(request.getParameter("autor"));%>" 
+                                               name="autor" 
                                                size="50"
                                                pattern="[a-zA-Z\,]{0,50}" t
                                                itle="Solo debe ingresar texto sin acento y maximo 50 caracteres" 
                                                required/>  
                                     </div>
-                                   </div>
+                                </div>
                             </div>
                             <div class="columns">
                                 <div class="column">
@@ -71,8 +69,13 @@
                                     <div class="control">
                                         <div class="select">
                                             <select name="editorial" class="input is-rounded">
-                                                <option>1<option>
-
+                                                <sql:query dataSource = "${fuenteDatos}" var = "result">
+                                                    SELECT * FROM editorial;
+                                                </sql:query>
+                                                    
+                                                <c:forEach var = "row" items = "${result.rows}">
+                                                    <option value="${row.Id}"><c:out value = "${row.nombre}"/></option>
+                                                </c:forEach>
                                             </select> 
                                         </div>
                                     </div>
@@ -93,7 +96,7 @@
                     <br><br>
                     
                     <sql:query dataSource = "${fuenteDatos}" var = "result">
-                        SELECT isbn, titulo, autor, e.nombre FROM libro l INNER JOIN editorial e ON l.editorial = e.id;
+                        SELECT isbn, titulo, autor, e.nombre FROM libro l INNER JOIN editorial e ON l.editorial = e.id ORDER BY isbn;
                     </sql:query>
                        
                     <table class="table is-full" border = "1">
@@ -112,26 +115,15 @@
                                 <td><c:out value = "${row.autor}"/></td>
                                 <td><c:out value = "${row.nombre}"/></td>
                                 <td>
-                                    <a href='libros.jsp?
-                                       isbn="+isbn+"&
-                                       titulolibro="+titulo+"&
-                                       autor="+autor+"&
-                                       anio="+anio+"&
-                                       editorial="+rs.getString("editorial")+"&
-                                       actualizar'>Actualizar
-                                    </a>
+                                    <a href="frmupdate.jsp?isbn=${row.isbn}&titulo=${row.titulo}&autor=${row.autor}&editorial=${row.nombre}">Actualizar</a>
                                     <br>
                                     <a href="eliminar.jsp?isbn=${row.isbn}">Eliminar</a>
                                 </td>
                             </tr>
                         </c:forEach>
                     </table>
-                    
-                    
                 </div>
            </div>
         </div>
-                                                          
-        <script src="js/script.js"></script>
     </body>
 </html>

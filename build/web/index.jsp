@@ -24,7 +24,15 @@
                                 <div class="column">
                                     <label for="nombre" class="label">ISBN: </label>
                                     <div class="control">
-                                        <input type="text" class="input is-rounded" name="isbn" value="<% if (request.getParameter("isbn") != null) out.println(request.getParameter("isbn"));%>" size="13" maxlength="13" pattern="[0-9]{13}" title="Debe ingresar 13 digitos" required/>
+                                        <input type="text" 
+                                               class="input is-rounded" 
+                                               name="isbn" 
+                                               value="<% if (request.getParameter("isbn") != null) out.println(request.getParameter("isbn"));%>" 
+                                               size="13" 
+                                               maxlength="13" 
+                                               pattern="[0-9]{13}" 
+                                               title="Debe ingresar 13 digitos" 
+                                               required/>
                                     </div>
                                 </div>
                             </div>
@@ -32,7 +40,14 @@
                                 <div class="column">
                                     <label for="nombre" class="label">Título: </label>
                                     <div class="control">
-                                        <input type="text" class="input is-rounded" name="titulo" value="<% if (request.getParameter("titulolibro") != null) out.println(request.getParameter("titulolibro"));%>" size="50" pattern="[a-zA-Z0-9\,]{0,50}" title="Solo debe ingresar texto y maximo 50 caracteres" required/>                  
+                                        <input type="text" 
+                                               class="input is-rounded" 
+                                               name="titulo" 
+                                               value="<% if (request.getParameter("titulolibro") != null) out.println(request.getParameter("titulolibro"));%>" 
+                                               size="50" 
+                                               pattern="[a-zA-Z0-9\,]{0,50}" 
+                                               title="Solo debe ingresar texto y maximo 50 caracteres" 
+                                               required/>                  
                                     </div>
                                 </div>
                             </div>
@@ -40,7 +55,13 @@
                                 <div class="column">
                                     <label for="nombre" class="label">Autor: </label>
                                     <div class="control">
-                                        <input type="text" class="input is-rounded" name="autor" value="<% if (request.getParameter("autor") != null) out.println(request.getParameter("autor"));%>" size="50" required  pattern="[a-zA-Z\,]{0,50}" title="Solo debe ingresar texto sin acento y maximo 50 caracteres" />  
+                                        <input type="text" 
+                                               class="input is-rounded" 
+                                               name="autor" value="<% if (request.getParameter("autor") != null) out.println(request.getParameter("autor"));%>" 
+                                               size="50"
+                                               pattern="[a-zA-Z\,]{0,50}" t
+                                               itle="Solo debe ingresar texto sin acento y maximo 50 caracteres" 
+                                               required/>  
                                     </div>
                                    </div>
                             </div>
@@ -50,7 +71,7 @@
                                     <div class="control">
                                         <div class="select">
                                             <select name="editorial" class="input is-rounded">
-
+                                                <option>1<option>
 
                                             </select> 
                                         </div>

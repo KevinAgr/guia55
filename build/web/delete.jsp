@@ -8,19 +8,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Actualizar Libro</title>
+        <title>Delete</title>
     </head>
     <body>
         <sql:update dataSource="${fuenteDatos}" var="count">
-            UPDATE libro SET isbn = ?,titulo = ?,autor = ?, editorial=?
-            WHERE id='${param.id}'
-            <sql:param value="${param.isbn}"/>
-            <sql:param value="${param.titulo}"/>
-            <sql:param value="${param.autor}"/>  
-            <sql:param value="${param.editorial}"/> 
+            DELETE FROM libro
+            WHERE id="${param.id}"
         </sql:update>
-            <c:choose>
-  <c:when test="${count>=1}">
+<c:choose>
+        <c:when test="${count>=1}">
     <script>
                 location.href = "index.jsp";
             </script>
@@ -32,7 +28,6 @@
             </script>
   </c:otherwise>
 </c:choose>
-  
-        
+
     </body>
 </html>
